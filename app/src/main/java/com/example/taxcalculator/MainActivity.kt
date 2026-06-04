@@ -95,6 +95,7 @@ private fun calculateTax(amount: Double, taxPercent: Double = 10.0, roundUp: Boo
 @Composable
 fun EditTextNumber(
     @StringRes label: Int,
+    @DrawableRes leadingIcon: Int,
     keyboardOptions: KeyboardOptions,
     value: String,
     onValueChange: (String) -> Unit,
@@ -108,7 +109,13 @@ fun EditTextNumber(
         keyboardOptions = keyboardOptions,
         modifier = Modifier
             .padding(bottom = 16.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        leadingIcon = {
+            Icon(
+                painter = painterResource(id = leadingIcon),
+                contentDescription = null,
+            )
+        }
     )
 }
 
@@ -146,6 +153,7 @@ fun TaxLayout(modifier: Modifier = Modifier) {
             ),
             value = amountInput,
             onValueChange = { amountInput = it },
+            leadingIcon = R.drawable.ic_money,
             modifier = Modifier
                 .padding(32.dp)
                 .fillMaxWidth()
@@ -159,6 +167,7 @@ fun TaxLayout(modifier: Modifier = Modifier) {
             ),
             value = taxInput,
             onValueChange = { taxInput = it },
+            leadingIcon = R.drawable.ic_tax,
             modifier = Modifier
                 .padding(32.dp)
                 .fillMaxWidth()
